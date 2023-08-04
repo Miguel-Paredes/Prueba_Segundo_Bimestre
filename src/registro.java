@@ -52,7 +52,7 @@ public class registro {
             @Override
             public void actionPerformed(ActionEvent e) {
                 codigox = codigoTextField.getText().trim();
-                usuriox = new String(usurioi);
+                usuriox = nombreTextField.getText().trim();
                 actualizar(codigox, usuriox);
             }
         });
@@ -62,7 +62,7 @@ public class registro {
             @Override
             public void actionPerformed(ActionEvent e) {
                 codigox = codigoTextField.getText().trim();
-                usuriox = new String(usurioi);
+                usuriox = nombreTextField.getText().trim();
                 borrar(codigox, usuriox);
             }
         });
@@ -127,14 +127,22 @@ public class registro {
     }
 
     public void actualizar(String codi, String usu){
-        String querry1="update Estudiantes Set nombre='"+usu+"'"+"Where codigo='"+codi+"'";
+        String querry1="update registro Set nombre='"+usu+"'"+"Where codigo='"+codi+"'";
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement stmt = conn.createStatement();){
-            ResultSet rs = stmt.executeQuery(querry1);
             System.out.println("Nombre Actualizado");
+            ResultSet rs = stmt.executeQuery(querry1);
+            while (rs.next()){
+                if(codi.equals(codigoTextField.getText().toString())){
+                    System.out.println("Código: "+ rs.getString("codigo"));
+                    System.out.println("Cédula: "+ rs.getString("cedula"));
+                    System.out.println("Nombre: "+ rs.getString("nombre"));
+                    System.out.println("Fecha: "+ rs.getString("fecha"));
+}                    System.out.println("Zigno: "+ rs.getString("zigno"));}
         }catch (Exception eac){
             throw new RuntimeException(eac);
         }
+        System.out.println("Usuario actualizado");
     }
 
     public void borrar(String codi, String usu){
@@ -146,6 +154,7 @@ public class registro {
         }catch (Exception eac){
             throw new RuntimeException(eac);
         }
+        System.out.println("Usuario eliminado");
     }
 
     public void buscarzigno(String zig){
