@@ -93,6 +93,7 @@ public class registro {
                 buscarcodigo(codigox);
             }
         });
+
     }
 
     public void conexion(){

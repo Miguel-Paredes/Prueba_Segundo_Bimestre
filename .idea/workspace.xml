@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7315cc7c-8569-4c2c-9db1-b8803d6693ec" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/registro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +53,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1691164848116</updated>
-      <workItem from="1691164849123" duration="6279000" />
+      <workItem from="1691164849123" duration="6465000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1691164874216</created>
@@ -91,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691169937773</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update">
+      <created>1691171438486</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691171438486</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
