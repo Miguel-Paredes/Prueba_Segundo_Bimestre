@@ -1,0 +1,15 @@
+create database prueba_II;
+use prueba_II;
+drop table registro;
+create table registro(
+	codigo varchar(10) NOT NULL PRIMARY KEY,
+	cedula varchar(10) NULL,
+    nombre varchar(50) NULL,
+	fecha varchar(20) NULL,
+	zigno varchar(20) null
+);
+Insert into registro
+values (202121519, 1726744327, 'Miguel','2023-08-04','Libra');
+Insert into registro
+values (202222529, 2716744317, 'Juan','2023-01-04','Leo');
+
