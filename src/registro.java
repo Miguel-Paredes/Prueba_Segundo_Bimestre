@@ -52,11 +52,36 @@ public class registro {
             @Override
             public void actionPerformed(ActionEvent e) {
                 codigox = codigoTextField.getText().trim();
-                cedulax = new String(cedulai);
                 usuriox = new String(usurioi);
-                fechax = new String(fechai);
-                zignox = new String(zignoi);
                 actualizar(codigox, usuriox);
+            }
+        });
+
+
+        borrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                codigox = codigoTextField.getText().trim();
+                usuriox = new String(usurioi);
+                borrar(codigox, usuriox);
+            }
+        });
+
+
+        buscarPorZignoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                zignox = zigno.getSelectedItem().toString();
+                buscarzigno(zignox);
+            }
+        });
+
+
+        buscarPorNombreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usuriox = nombreTextField.getText().trim();
+                buscarnombre(usuriox);
             }
         });
     }
@@ -98,9 +123,64 @@ public class registro {
         }catch (Exception eac){
             throw new RuntimeException(eac);
         }
-
     }
 
+    public void borrar(String codi, String usu){
+        String querry2 = "Delete From registro where Nombre='" + usu + "'";
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Statement stmt = conn.createStatement();){
+            ResultSet rs = stmt.executeQuery(querry2);
+            System.out.println("Registro Eliminado");
+        }catch (Exception eac){
+            throw new RuntimeException(eac);
+        }
+    }
+
+    public void buscarzigno(String zig){
+        String querry3="Select * From registro Where zigno='"+zig+"'";
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Statement stmt = conn.createStatement();
+            ){
+            ResultSet rs = stmt.executeQuery(querry3);
+            boolean buszig=false;
+            while (rs.next()){
+                if(zig.equals(zigno.getSelectedItem().toString())){
+                System.out.println("Código: "+ rs.getString("codigo"));
+                System.out.println("Cédula: "+ rs.getString("cedula"));
+                System.out.println("Nombre: "+ rs.getString("nombre"));
+                System.out.println("Fecha: "+ rs.getString("fecha"));
+                System.out.println("Zigno: "+ rs.getString("zigno"));
+                buszig=true;}}
+            if(!buszig){
+                System.out.println("No existen registros de usuarios con ese zigno");
+            }
+        }catch (Exception eac){
+            throw new RuntimeException(eac);
+        }
+    }
+
+    public void buscarnombre(String nom){
+        String querry4="Select * From registro Where nombre='"+nom+"'";
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Statement stmt = conn.createStatement();
+        ){
+            ResultSet rs = stmt.executeQuery(querry4);
+            boolean buszig=false;
+            while (rs.next()){
+                if(nom.equals(nombreTextField.getText().trim())){
+                    System.out.println("Código: "+ rs.getString("codigo"));
+                    System.out.println("Cédula: "+ rs.getString("cedula"));
+                    System.out.println("Nombre: "+ rs.getString("nombre"));
+                    System.out.println("Fecha: "+ rs.getString("fecha"));
+                    System.out.println("Zigno: "+ rs.getString("zigno"));
+                    buszig=true;}}
+            if(!buszig){
+                System.out.println("No existen registros de usuarios con ese zigno");
+            }
+        }catch (Exception eac){
+            throw new RuntimeException(eac);
+        }
+    }
     public static void main(String[] args) {
         JFrame frame = new JFrame("registro");
         frame.setContentPane(new registro().panel1);
