@@ -84,6 +84,15 @@ public class registro {
                 buscarnombre(usuriox);
             }
         });
+
+
+        buscarPorCodigoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                codigox = codigoTextField.getText().trim();
+                buscarcodigo(codigox);
+            }
+        });
     }
 
     public void conexion(){
@@ -168,6 +177,29 @@ public class registro {
             boolean buszig=false;
             while (rs.next()){
                 if(nom.equals(nombreTextField.getText().trim())){
+                    System.out.println("Código: "+ rs.getString("codigo"));
+                    System.out.println("Cédula: "+ rs.getString("cedula"));
+                    System.out.println("Nombre: "+ rs.getString("nombre"));
+                    System.out.println("Fecha: "+ rs.getString("fecha"));
+                    System.out.println("Zigno: "+ rs.getString("zigno"));
+                    buszig=true;}}
+            if(!buszig){
+                System.out.println("No existen registros de usuarios con ese zigno");
+            }
+        }catch (Exception eac){
+            throw new RuntimeException(eac);
+        }
+    }
+
+    public void buscarcodigo(String cod){
+        String querry5="Select * From registro Where codigo='"+cod+"'";
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Statement stmt = conn.createStatement();
+        ){
+            ResultSet rs = stmt.executeQuery(querry5);
+            boolean buszig=false;
+            while (rs.next()){
+                if(cod.equals(codigoTextField.getText().trim())){
                     System.out.println("Código: "+ rs.getString("codigo"));
                     System.out.println("Cédula: "+ rs.getString("cedula"));
                     System.out.println("Nombre: "+ rs.getString("nombre"));
