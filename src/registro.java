@@ -118,6 +118,9 @@ public class registro {
             if(!encontrado){
                 System.out.println("Algun campo no has ingresado correctamente");
             }
+            else{
+                System.out.println("Ingreso exitoso");
+            }
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
@@ -221,3 +224,5 @@ public class registro {
         frame.setVisible(true);
     }
 }
+
+
